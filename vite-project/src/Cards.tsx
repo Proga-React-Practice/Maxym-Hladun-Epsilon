@@ -1,13 +1,6 @@
 import React from "react";
 import "./CardsStyles.css";
-
-interface Project {
-  id: number;
-  name: string;
-  description: string;
-  deadline: string;
-  technologies: string[];
-}
+import { Project } from "./Utils";
 
 const Cards: React.FC<{
   projects: Project[];

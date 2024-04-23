@@ -1,13 +1,20 @@
 import React, { useState } from "react";
 import "./FormStyles.css";
+import { Project } from "./Utils";
+import Checkbox from "./Checkbox";
 
-interface Project {
-  id: number;
-  name: string;
-  description: string;
-  deadline: string;
-  technologies: string[];
-}
+const TechnologiesList: { id: string; name: string }[] = [
+  { id: "html", name: "HTML" },
+  { id: "css", name: "CSS" },
+  { id: "js", name: "JavaScript" },
+  { id: "ts", name: "TypeScript" },
+  { id: "python", name: "Python" },
+  { id: "scala", name: "Scala" },
+  { id: "reactjs", name: "React.js" },
+  { id: "nodejs", name: "Node.js" },
+  { id: "php", name: "PHP" },
+  // Add more technologies as needed
+];
 
 const AddOrderForm: React.FC<{
   addProject: (project: Project) => void;
@@ -39,8 +46,7 @@ const AddOrderForm: React.FC<{
     setTechnologies([]);
   };
 
-  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
+  const handleCheckboxChange = (value: string) => {
     if (technologies.includes(value)) {
       setTechnologies(technologies.filter((tech) => tech !== value));
     } else {
@@ -84,97 +90,16 @@ const AddOrderForm: React.FC<{
           </div>
           <div className="form-group">
             <label>Technologies:</label>
-            <br />
-            <div className="TechnologyComponent">
-              <input
-                type="checkbox"
-                id="html"
-                value="HTML"
-                onChange={handleCheckboxChange}
-              />
-              <label htmlFor="html">HTML</label>
+            <div className="TechnologyContainer">
+              {TechnologiesList.map((tech) => (
+                <Checkbox
+                  key={tech.id}
+                  id={tech.id}
+                  value={tech.name}
+                  onChange={handleCheckboxChange}
+                />
+              ))}
             </div>
-            <br />
-            <div className="TechnologyComponent">
-              <input
-                type="checkbox"
-                id="css"
-                value="CSS"
-                onChange={handleCheckboxChange}
-              />
-              <label htmlFor="css">CSS</label>
-            </div>
-            <br />
-            <div className="TechnologyComponent">
-              <input
-                type="checkbox"
-                id="js"
-                value="JavaScript"
-                onChange={handleCheckboxChange}
-              />
-              <label htmlFor="js">JavaScript</label>
-            </div>
-            <br />
-            <div className="TechnologyComponent">
-              <input
-                type="checkbox"
-                id="ts"
-                value="TypeScript"
-                onChange={handleCheckboxChange}
-              />
-              <label htmlFor="ts">TypeScript</label>
-            </div>
-            <br />
-            <div className="TechnologyComponent">
-              <input
-                type="checkbox"
-                id="python"
-                value="Python"
-                onChange={handleCheckboxChange}
-              />
-              <label htmlFor="python">Python</label>
-            </div>
-            <br />
-            <div className="TechnologyComponent">
-              <input
-                type="checkbox"
-                id="scala"
-                value="Scala"
-                onChange={handleCheckboxChange}
-              />
-              <label htmlFor="scala">Scala</label>
-            </div>
-            <br />
-            <div className="TechnologyComponent">
-              <input
-                type="checkbox"
-                id="reactjs"
-                value="React.js"
-                onChange={handleCheckboxChange}
-              />
-              <label htmlFor="reactjs">React.js</label>
-            </div>
-            <br />
-            <div className="TechnologyComponent">
-              <input
-                type="checkbox"
-                id="nodejs"
-                value="Node.js"
-                onChange={handleCheckboxChange}
-              />
-              <label htmlFor="nodejs">Node.js</label>
-            </div>
-            <br />
-            <div className="TechnologyComponent">
-              <input
-                type="checkbox"
-                id="php"
-                value="PHP"
-                onChange={handleCheckboxChange}
-              />
-              <label htmlFor="php">PHP</label>
-            </div>
-            <br />
           </div>
 
           <div className="form-group">

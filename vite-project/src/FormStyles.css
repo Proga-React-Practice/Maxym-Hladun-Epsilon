@@ -46,3 +46,9 @@ button[type="button"] {
 button:hover {
   opacity: 0.8;
 }
+
+.TechnologyContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

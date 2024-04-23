@@ -2,14 +2,7 @@ import React, { useState } from "react";
 import AddOrderForm from "./AddOrderForm";
 import Cards from "./Cards";
 import "./index.css";
-
-interface Project {
-  id: number;
-  name: string;
-  description: string;
-  deadline: string;
-  technologies: string[];
-}
+import { Project } from "./Utils";
 
 const App: React.FC = () => {
   const [projects, setProjects] = useState<Project[]>([]);
