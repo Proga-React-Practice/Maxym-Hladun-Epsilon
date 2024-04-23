@@ -13,7 +13,6 @@ const TechnologiesList: { id: string; name: string }[] = [
   { id: "reactjs", name: "React.js" },
   { id: "nodejs", name: "Node.js" },
   { id: "php", name: "PHP" },
-  // Add more technologies as needed
 ];
 
 const AddOrderForm: React.FC<{
