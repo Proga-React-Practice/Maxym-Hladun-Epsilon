@@ -1,0 +1,54 @@
+.form-container {
+  display: flex;
+  justify-content: left;
+  padding: 20px;
+}
+
+.form-wrapper {
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 300px;
+  background-color: #e8e8e8;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+input[type="text"],
+textarea,
+input[type="date"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: green;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"] {
+  margin-right: 10px;
+}
+
+button[type="button"] {
+  background-color: red;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.TechnologyContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
