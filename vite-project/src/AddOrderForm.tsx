@@ -1,7 +1,16 @@
 import React, { useState } from "react";
-import "./FormStyles.css";
+import {
+  TextField,
+  Button,
+  Checkbox,
+  FormControlLabel,
+  FormGroup,
+  Box,
+} from "@mui/material";
+import { Typography } from "@mui/material";
 import { Project } from "./Utils";
-import Checkbox from "./Checkbox";
+import { grey, red, green } from "@mui/material/colors";
+import { styled } from "@mui/system";
 
 const TechnologiesList: { id: string; name: string }[] = [
   { id: "html", name: "HTML" },
@@ -15,9 +24,24 @@ const TechnologiesList: { id: string; name: string }[] = [
   { id: "php", name: "PHP" },
 ];
 
+const StyledTypography = styled(Typography)(({ theme }) => ({
+  color: (props) =>
+    props.darkMode ? theme.palette.grey[300] : theme.palette.text.primary,
+}));
+
+const StyledFormWrapper = styled(Box)(({ theme }) => ({
+  border: "1px solid #ccc",
+  padding: "20px",
+  width: "450px",
+  backgroundColor: (props) =>
+    props.darkMode ? theme.palette.grey[800] : theme.palette.grey[300],
+  borderRadius: "10px",
+}));
+
 const AddOrderForm: React.FC<{
   addProject: (project: Project) => void;
-}> = ({ addProject }) => {
+  darkMode: boolean;
+}> = ({ addProject, darkMode }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [deadline, setDeadline] = useState("");
@@ -54,57 +78,93 @@ const AddOrderForm: React.FC<{
   };
 
   return (
-    <div className="form-container">
-      <div className="form-wrapper">
-        <h2>Project Order Form</h2>
+    <Box
+      className={`form-container ${
+        darkMode ? "dark-background" : "light-background"
+      }`}
+      sx={{
+        justifyContent: "left",
+        padding: "20px",
+      }}
+    >
+      <StyledFormWrapper darkMode={darkMode}>
+        <StyledTypography variant="h2" darkMode={darkMode}>
+          Project Order Form
+        </StyledTypography>
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="project-name">Project Name:</label>
-            <input
-              type="text"
+          <Box className="form-group" sx={{ marginBottom: "15px" }}>
+            <StyledTypography htmlFor="project-name" darkMode={darkMode}>
+              Project Name:
+            </StyledTypography>
+            <TextField
               id="project-name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
+              sx={{
+                width: "350px",
+              }}
             />
-          </div>
-          <div className="form-group">
-            <label htmlFor="project-description">Project Description:</label>
-            <textarea
+          </Box>
+          <Box className="form-group" sx={{ marginBottom: "15px" }}>
+            <StyledTypography htmlFor="project-description" darkMode={darkMode}>
+              Project Description:
+            </StyledTypography>
+            <TextField
               id="project-description"
+              multiline
+              rows={4}
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
-            ></textarea>
-          </div>
-          <div className="form-group">
-            <label htmlFor="deadline">Deadline:</label>
-            <input
-              type="date"
+              sx={{
+                width: "350px",
+              }}
+            />
+          </Box>
+          <Box className="form-group" sx={{ marginBottom: "15px" }}>
+            <StyledTypography htmlFor="deadline" darkMode={darkMode}>
+              Deadline:
+            </StyledTypography>
+            <TextField
               id="deadline"
+              type="date"
               value={deadline}
               onChange={(e) => setDeadline(e.target.value)}
               required
             />
-          </div>
-          <div className="form-group">
-            <label>Technologies:</label>
-            <div className="TechnologyContainer">
+          </Box>
+          <Box className="form-group" sx={{ marginBottom: "15px" }}>
+            <StyledTypography darkMode={darkMode}>
+              Technologies:
+            </StyledTypography>
+            <FormGroup>
               {TechnologiesList.map((tech) => (
-                <Checkbox
+                <FormControlLabel
                   key={tech.id}
-                  id={tech.id}
-                  value={tech.name}
-                  onChange={handleCheckboxChange}
+                  control={
+                    <Checkbox
+                      checked={technologies.includes(tech.id)}
+                      onChange={() => handleCheckboxChange(tech.id)}
+                    />
+                  }
+                  label={tech.name}
                 />
               ))}
-            </div>
-          </div>
-
-          <div className="form-group">
-            <button type="submit">Submit</button>
-            <button
+            </FormGroup>
+          </Box>
+          <Box className="form-group" sx={{ marginBottom: "15px" }}>
+            <Button
+              type="submit"
+              variant="contained"
+              sx={{ marginRight: "10px", bgcolor: green[500] }}
+            >
+              Submit
+            </Button>
+            <Button
               type="button"
+              variant="contained"
+              sx={{ bgcolor: red[500] }}
               onClick={() => {
                 setName("");
                 setDescription("");
@@ -113,11 +173,11 @@ const AddOrderForm: React.FC<{
               }}
             >
               Clear Form
-            </button>
-          </div>
+            </Button>
+          </Box>
         </form>
-      </div>
-    </div>
+      </StyledFormWrapper>
+    </Box>
   );
 };
 
