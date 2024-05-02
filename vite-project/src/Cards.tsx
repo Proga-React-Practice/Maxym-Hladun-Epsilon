@@ -28,6 +28,11 @@ const StyledCard = styled(Card)(({ theme }) => ({
   backgroundColor: (props) =>
     props.darkMode ? theme.palette.grey[700] : theme.palette.background.paper,
   animation: `${cardSlideIn} 0.5s ease-out`,
+
+  [theme.breakpoints.down("sm")]: {
+    width: "90%",
+    height: "auto",
+  },
 }));
 
 const StyledCardContent = styled(CardContent)({
@@ -44,11 +49,16 @@ const Technology = styled(Typography)(({ theme }) => ({
 const CardsContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   flexWrap: "wrap",
-  justifyContent: "flex-start",
+  justifyContent: "center",
   padding: theme.spacing(2),
   width: "100%",
   backgroundColor: (props) =>
     props.darkMode ? theme.palette.grey[800] : theme.palette.grey[200],
+
+  // Медіа-запит для малих екранів
+  [theme.breakpoints.down("sm")]: {
+    justifyContent: "flex-start",
+  },
 }));
 
 const Cards: React.FC<{

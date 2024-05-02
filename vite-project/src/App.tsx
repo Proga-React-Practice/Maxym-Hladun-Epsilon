@@ -56,6 +56,13 @@ const App: React.FC = () => {
       <CssBaseline />
       <Box
         className={`main ${darkMode ? "dark-background" : "light-background"}`}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          minHeight: "100vh",
+          padding: "20px",
+        }}
       >
         <IconButton
           onClick={toggleDarkMode}
