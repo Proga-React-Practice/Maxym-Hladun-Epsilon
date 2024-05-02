@@ -7,6 +7,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import CssBaseline from "@mui/material/CssBaseline";
+import Box from "@mui/material/Box";
 
 export const lightTheme = createTheme({
   palette: {
@@ -53,7 +54,7 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <div
+      <Box
         className={`main ${darkMode ? "dark-background" : "light-background"}`}
       >
         <IconButton
@@ -69,7 +70,7 @@ const App: React.FC = () => {
           deleteProject={deleteProject}
           darkMode={darkMode}
         />
-      </div>
+      </Box>
     </ThemeProvider>
   );
 };
